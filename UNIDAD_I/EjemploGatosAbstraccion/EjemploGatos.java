@@ -1,4 +1,4 @@
-//package EjemploGatosAbstraccion;
+package EjemploGatosAbstraccion;
 
 import java.util.Scanner;
 

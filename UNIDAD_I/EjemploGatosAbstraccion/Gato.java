@@ -1,4 +1,13 @@
-//package EjemploGatosAbstraccion;
+/**
+ * @author Joel Torres
+ * Ejecutar con los siguientes comandos (situados en el directorio "UNIDAD_I"):
+ * UNIDAD_I> javac EjemploGatosAbstraccion/Gato.java
+ * UNIDAD_I> javac EjemploGatosAbstraccion/EjemploGatos.java
+ * UNIDAD_I> java EjemploGatosAbstraccion/EjemploGatos
+ * 
+ * En la clase no resultó, porque se ejecutó con separador de directorio \, en lugar de / (con el que resulta) :(
+ */
+package EjemploGatosAbstraccion;
 
 public class Gato{
     //Atributos
