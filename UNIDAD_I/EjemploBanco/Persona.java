@@ -9,6 +9,7 @@ public class Persona{
 
     public Persona(int id, String nombre, SimpleDate fecha)
     {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.fechaNacimiento = fecha;
@@ -62,5 +63,11 @@ public class Persona{
     {
         SimpleDate ahora = SimpleDate(2020,11,04);
         return this.fechaNacimiento.calculateAge(ahora) >= 18;
+    }
+
+    public int getAge()
+    {
+        SimpleDate ahora = SimpleDate(2020,11,04);
+        return this.fechaNacimiento.calculateAge(ahora);
     }
 }
