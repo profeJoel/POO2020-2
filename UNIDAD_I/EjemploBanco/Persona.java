@@ -1,13 +1,13 @@
 package EjemploBanco;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Persona{
     private int id;
     private String nombre;
-    private SimpleDate fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
-    public Persona(int id, String nombre, SimpleDate fecha)
+    public Persona(int id, String nombre, LocalDate fecha)
     {
         super();
         this.id = id;
@@ -25,7 +25,7 @@ public class Persona{
         return this.nombre;
     }
 
-    public Date getFechaNacimiento()
+    public LocalDate getFechaNacimiento()
     {
         return this.fechaNacimiento;
     }
@@ -35,7 +35,8 @@ public class Persona{
         this.id = id;
     }
 
-    public bool setId(int id)
+    /*
+    public boolean setId(int id)
     {
         if(id <= 0)
             return false;
@@ -43,31 +44,36 @@ public class Persona{
             this.id = id;
         return true;
     }
+    */
 
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
 
-    public void setFechaNacimiento(SimpleDate fecha)
+    public void setFechaNacimiento(LocalDate fecha)
     {
         this.fechaNacimiento = fecha;
     }
 
     public void mostrar()
     {
-        System.out.println("Persona >> id: " + this.id + ", nombre: " + this.nombre + ", fecha Nacimiento: " + this.fechaNacimiento.toString());
+        System.out.println("Persona >> id: " + this.id + ", nombre: " + this.nombre + ", fecha Nacimiento: " + this.fechaNacimiento);
     }
 
-    public bool esMayorDeEdad()
+    public boolean esMayorDeEdad()
     {
-        SimpleDate ahora = SimpleDate(2020,11,04);
-        return this.fechaNacimiento.calculateAge(ahora) >= 18;
+        return this.getAge() >= 18;
     }
 
     public int getAge()
     {
-        SimpleDate ahora = SimpleDate(2020,11,04);
-        return this.fechaNacimiento.calculateAge(ahora);
+        LocalDate ahora = LocalDate.now();
+        return ahora.getYear() - this.fechaNacimiento.getYear();
+    }
+
+    public static boolean mayor(int a, int b)
+    {
+        return a > b;
     }
 }

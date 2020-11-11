@@ -13,8 +13,14 @@ public class Consumo extends Credito{
     
     public Consumo(int id, double monto, int cantCuotas, double tasa, int cuotasGracia, int cuotasDesface)
     {
-        super(id, titular, monto, cantCuotas, tasa);
+        super(id, monto, cantCuotas, tasa);
         this.cantCuotasDesface = cuotasDesface;
         this.cantCuotasGracia = cuotasGracia;
+    }
+    
+    @Override
+    public void mostrar()
+    {
+        System.out.println("Producto Credito Consumo > id: " + this.id + " Titular: " + this.titular.getNombre() + " Saldo: " + this.saldo);
     }
 }

@@ -2,7 +2,7 @@ package EjemploBanco;
 
 public class Cuenta extends ProductoBancario{
     //atributos
-    private double saldo;
+    protected double saldo;
 
     //metodos
     public Cuenta(int id, Cliente titular, double saldo)

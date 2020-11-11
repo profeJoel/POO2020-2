@@ -2,8 +2,8 @@ package EjemploBanco;
 
 public class ProductoBancario{
     // atributos
-    private int id;
-    private Cliente titular;
+    protected int id;
+    protected Cliente titular;
 
     //metodos
     public ProductoBancario(int id, Cliente titular)

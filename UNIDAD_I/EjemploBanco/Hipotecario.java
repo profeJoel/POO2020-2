@@ -15,9 +15,15 @@ public class Hipotecario extends Credito{
 
     public Hipotecario(int id, double monto, int cantCuotas, double tasa, String descVivienda, double tasacionVivienda, double prima)
     {
-        super(id, titular, monto, cantCuotas, tasa);
+        super(id, monto, cantCuotas, tasa);
         this.descripcionVivienda = descVivienda;
         this.tasacionVivienda = tasacionVivienda;
         this.primaInicial = prima;
+    }
+    
+    @Override
+    public void mostrar()
+    {
+        System.out.println("Producto Credito Hipotecario > id: " + this.id + " Titular: " + this.titular.getNombre() + " Saldo: " + this.saldo);
     }
 }

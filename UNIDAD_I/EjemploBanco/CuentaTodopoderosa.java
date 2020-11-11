@@ -60,4 +60,9 @@ public class CuentaTodopoderosa extends Cuenta{
         }
     }
 
+    @Override
+    public void mostrar()
+    {
+        System.out.println("Producto CuentaTodopoderosa > id: " + this.id + " Titular: " + this.titular.getNombre() + " Saldo: " + this.saldo);
+    }
 }

@@ -2,12 +2,12 @@ package EjemploBanco;
 
 public class Credito extends ProductoBancario{
     //Atributos
-    private double monto;
-    private int cantCuotasTotal;
-    private int cantCuotasPagadas;
-    private double tasaInteres;
-    private double montoAbonado;
-    private double saldo;
+    protected double monto;
+    protected int cantCuotasTotal;
+    protected int cantCuotasPagadas;
+    protected double tasaInteres;
+    protected double montoAbonado;
+    protected double saldo;
 
     //metodos
     public Credito(int id, Cliente titular, double monto, int cantCuotas, double tasa)

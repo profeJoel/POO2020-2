@@ -23,7 +23,7 @@ public class CuentaJoven extends Cuenta{
      * true - si titular es mayor de edad y menor que 25 años
      * false - sino
      */
-    public static boolean esTitularValido()
+    public boolean esTitularValido()
     {
         int edad = this.titular.getAge();
         return (edad >= 18 && edad <= 25);
@@ -49,6 +49,12 @@ public class CuentaJoven extends Cuenta{
             else
                 System.out.println("El titular no es valido, consulte con un ejecutivo...");
         }
+    }
+
+    @Override
+    public void mostrar()
+    {
+        System.out.println("Producto CuentaJoven > id: " + this.id + " Titular: " + this.titular.getNombre() + " Saldo: " + this.saldo);
     }
 
 }
