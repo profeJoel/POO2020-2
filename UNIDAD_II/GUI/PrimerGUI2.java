@@ -1,4 +1,4 @@
-//package GUI;
+package GUI;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,14 +24,8 @@ public class PrimerGUI2 extends Application implements EventHandler<ActionEvent>
         boton1.setText("Pegame");
         boton1.setOnAction(this);
 
-        
-        boton2 = new Button();
-        boton2.setText("Pegame");
-        boton2.setOnAction(this);
-
         StackPane lienzo = new StackPane();
         lienzo.getChildren().add(boton1);
-        lienzo.getChildren().add(boton2);
 
         Scene ventana = new Scene(lienzo, 600,400);
         primaryStage.setScene(ventana);
@@ -43,7 +37,5 @@ public class PrimerGUI2 extends Application implements EventHandler<ActionEvent>
     {
         if(event.getSource() == boton1)
             System.out.println("Le pegaste al Boton 1!!!");
-        if(event.getSource() == boton2)
-            System.out.println("Le pegaste al Boton 2!!!");
     }
 }
