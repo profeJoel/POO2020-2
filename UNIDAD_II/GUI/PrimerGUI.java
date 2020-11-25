@@ -1,3 +1,5 @@
+//package GUI;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -6,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class ejemploJavaFX extends Application{
+public class PrimerGUI extends Application{
     Button boton;
 
     public static void main(String[] args)
@@ -17,15 +19,15 @@ public class ejemploJavaFX extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        primaryStage.setTitle("Title of the Window");
+        primaryStage.setTitle("MI primera ventana en Java");
         boton = new Button();
-        boton.setText("Pégame");
-        
+        boton.setText("Pegame");
+
         StackPane lienzo = new StackPane();
         lienzo.getChildren().add(boton);
 
-        Scene escena = new Scene(lienzo, 600, 400);
-        primaryStage.setScene(escena);
+        Scene ventana = new Scene(lienzo, 600,400);
+        primaryStage.setScene(ventana);
         primaryStage.show();
     }
 }

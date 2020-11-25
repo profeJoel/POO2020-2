@@ -1,3 +1,9 @@
+/**
+ * compila javac javaFX/ejemploJavaFX3.java
+ * ejecuta java javaFX.ejemploJavaFX3
+ */
+package javaFX;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +28,11 @@ public class ejemploJavaFX3 extends Application{
         boton.setText("Pegame");
 
         //inner class
-        boton.setOnAction(e -> System.out.println("Me Pegaste!!! (desde una expresion lambda)"));
+        //boton.setOnAction(e -> System.out.println("Me Pegaste!!! (desde una expresion lambda)"));
+        boton.setOnAction(e -> {
+            System.out.println("Me Pegaste!!! (desde una expresion lambda)");
+            System.out.println("Venganza!");
+        });
         
         StackPane lienzo = new StackPane();
         lienzo.getChildren().add(boton);

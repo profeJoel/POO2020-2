@@ -1,0 +1,77 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SistemaBanco<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "EjemploBanco.SistemaBanco",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX1<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX1",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX2<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX2",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX3<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX3",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX4<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX4",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX5<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX5",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX6<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX6",
+            "projectName": "POO2020-2_13620cd1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ejemploJavaFX7<POO2020-2_13620cd1>",
+            "request": "launch",
+            "mainClass": "javaFX.ejemploJavaFX7",
+            "projectName": "POO2020-2_13620cd1"
+        }
+    ]
+}
