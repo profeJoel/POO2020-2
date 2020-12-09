@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -47,9 +48,27 @@ public class Pong extends Application {
 		
 		//mouse control (move and click)
 		canvas.setOnMouseMoved(e ->  playerOneYPos  = e.getY());
-        canvas.setOnMouseClicked(e ->  gameStarted = true);
+		canvas.setOnMouseClicked(e ->  gameStarted = true);
 
-		stage.setScene(new Scene(new StackPane(canvas)));
+		Scene escena = new Scene(new StackPane(canvas));
+		
+		escena.setOnKeyPressed(e -> {
+			if(e.getCode() == KeyCode.UP){
+				playerOneYPos -= 5;
+				System.out.println("Arriba");
+			}
+			if(e.getCode() == KeyCode.DOWN){
+				playerOneYPos += 5;
+				System.out.println("Abajo");
+			}
+			//if(e.getCode() == KeyCode.LEFT)
+			//	System.out.println("Izquierda");
+			//if(e.getCode() == KeyCode.RIGHT)
+			//	System.out.println("Derecha");
+		});
+
+		//stage.setScene(new Scene(new StackPane(canvas)));
+		stage.setScene(escena);
 		stage.show();
 		tl.play();
 	}
@@ -124,8 +143,8 @@ public class Pong extends Application {
 		gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	
-		// start the application
-		public static void main(String[] args) {
+	// start the application
+	public static void main(String[] args) {
 		launch(args);
-		}
+	}
 }
