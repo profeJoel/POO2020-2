@@ -26,7 +26,7 @@ public class Interactivo extends Application{
     double puntaje = 0;
 
     Emoji e1 = new Emoji("e1.png", 50, 50, 100, 100, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, KeyCode.DOWN);
-    Emoji e2 = new Emoji("e2.png", 525 - 50,  400 - 50, 100, 100, KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.S);
+    Emoji e2 = new Emoji("e2.png", 525 - 50, 400 - 50, 100, 100, KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.S);
 
     Image fondo = new Image(getClass().getResourceAsStream("pizarra.jpg"));
 
@@ -50,18 +50,6 @@ public class Interactivo extends Application{
 
         //Captura de evento de mouse
         lienzo.setOnMouseMoved(e -> e1.setXYCentrado(e.getX(), e.getY()));
-        
-        //Captura evento de teclado
-        /*escena.setOnKeyPressed(e -> {
-            if(e.getCode() == KeyCode.LEFT)
-                e1.disminuirX(5);
-            if(e.getCode() == KeyCode.RIGHT)
-                e1.aumentarX(5);
-            if(e.getCode() == KeyCode.UP)
-                e1.disminuirY(5);
-            if(e.getCode() == KeyCode.DOWN)
-                e1.aumentarY(5);
-        });*/
 
         escena.setOnKeyPressed(e -> {
             e1.mover(e);
@@ -75,34 +63,29 @@ public class Interactivo extends Application{
     }
 
     private void dibujar(GraphicsContext gc){
-        /*
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, 1050, 800);
-        gc.setFill(Color.BLUE);
-        gc.fillRect(x, y, 100, 100);
-        */
         e2.moverSolo();
 
         gc.drawImage(fondo, 0, 0, ANCHO, ALTO);
-        e1.dibujar(gc);
-        e2.dibujar(gc);
         //gc.drawImage(e1.getImagen(), e1.getX(), e1.getY(), e1.getAncho(), e1.getAlto());
         //gc.drawImage(e2.getImagen(), e2.getX(), e2.getY(), e2.getAncho(), e2.getAlto());
-        
+
+        e1.dibujar(gc);
+        e2.dibujar(gc);
+
         if(e1.colisionaCon(e2)){
-            //System.out.println("\n\nColisiona");
+            //System.out.println("Colisiona!");
             gc.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, FontPosture.ITALIC, 48.0));
             gc.setFill(Color.RED);
             gc.fillText("COLISION", 10, 50);
+            e2.hacerInvisible();
 
-            puntaje += 1;
-            //System.out.println("e1 > " + e1.getPuntoIzquierda() + ", " + e1.getPuntoDerecha() + ", " + e1.getPuntoArriba() + ", " + e1.getPuntoAbajo());
-            //System.out.println("e2 > " + e2.getPuntoIzquierda() + ", " + e2.getPuntoDerecha() + ", " + e2.getPuntoArriba() + ", " + e2.getPuntoAbajo());
+            puntaje += 10;
         }
-        
-        gc.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 32.0));
+
+        gc.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 32.0));
         gc.setFill(Color.YELLOW);
         gc.fillText("PUNTAJE: " + (int) puntaje, 750, 50);
+
     }
 
 }

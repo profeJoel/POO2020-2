@@ -13,8 +13,9 @@ public class Emoji {
     private String ruta;
     private Image imagen;
     private double x, y, ancho, alto;
-    private double puntoIzquierdo, puntoDerecho, puntoArriba, puntoAbajo;
     private KeyCode u, d, l, r;
+    private double puntoIzquierdo, puntoDerecho, puntoArriba, puntoAbajo;
+    private boolean esVisible;
 
     public Emoji(String ruta, double x, double y, double ancho, double alto, KeyCode izq, KeyCode der, KeyCode arr, KeyCode aba){
         this.ruta = ruta;
@@ -33,6 +34,8 @@ public class Emoji {
         this.setPuntoDerecho();
         this.setPuntoArriba();
         this.setPuntoAbajo();
+
+        this.esVisible = true;
     }
 
     public String getRuta(){
@@ -54,12 +57,13 @@ public class Emoji {
         return this.alto;
     }
 
-    public double getPuntoIzquierda(){
+    public double getPuntoIzquierdo(){
         return this.puntoIzquierdo;
     }
-    public double getPuntoDerecha(){
+    public double getPuntoDerecho(){
         return this.puntoDerecho;
     }
+
     public double getPuntoArriba(){
         return this.puntoArriba;
     }
@@ -83,8 +87,8 @@ public class Emoji {
     }
     public void setY(double y){
         this.y = y;
-        this.setPuntoAbajo();
         this.setPuntoArriba();
+        this.setPuntoAbajo();
     }
     public void setXY(double x, double y){
         this.setX(x);
@@ -120,12 +124,15 @@ public class Emoji {
     public void setPuntoIzquierdo(){
         this.puntoIzquierdo = this.x;
     }
+
     public void setPuntoDerecho(){
         this.puntoDerecho = this.x + this.ancho;
     }
+
     public void setPuntoArriba(){
         this.puntoArriba = this.y;
     }
+
     public void setPuntoAbajo(){
         this.puntoAbajo = this.y + this.alto;
     }
@@ -140,7 +147,7 @@ public class Emoji {
 
     public void aumentarX(double x){
         if(this.x + x + this.ancho <= Interactivo.ANCHO){
-            this.x += x;        
+            this.x += x;
             this.setPuntoIzquierdo();
             this.setPuntoDerecho();
         }
@@ -161,18 +168,6 @@ public class Emoji {
         }
     }
 
-    /*public void mover(Scene escena, KeyCode izq, KeyCode der, KeyCode arr, KeyCode aba){
-        escena.setOnKeyPressed(e -> {
-            if(e.getCode() == izq)
-                this.disminuirX(5);
-            if(e.getCode() == der)
-                this.aumentarX(5);
-            if(e.getCode() == arr)
-                this.disminuirY(5);
-            if(e.getCode() == aba)
-                this.aumentarY(5);
-        });
-    }*/
     public void mover(KeyEvent e){
         if(e.getCode() == this.l)
             this.disminuirX(5);
@@ -205,10 +200,19 @@ public class Emoji {
     }
 
     public void dibujar(GraphicsContext gc){
-        gc.drawImage(this.getImagen(), this.getX(), this.getY(), this.getAncho(), this.getAlto());
+        if(this.esVisible)
+            gc.drawImage(this.getImagen(), this.getX(), this.getY(), this.getAncho(), this.getAlto());
     }
 
     public boolean colisionaCon(Emoji emoji){
-        return (this.puntoDerecho > emoji.getPuntoIzquierda() && this.puntoIzquierdo < emoji.getPuntoDerecha() && this.puntoArriba < emoji.getPuntoAbajo() && this.puntoAbajo > emoji.getPuntoArriba());
+        return (this.puntoDerecho > emoji.getPuntoIzquierdo() && this.puntoIzquierdo < emoji.getPuntoDerecho() &&
+                    this.puntoArriba < emoji.getPuntoAbajo() && this.puntoAbajo > emoji.getPuntoArriba());
+    }
+
+    public void hacerVisible(){
+        this.esVisible = true;
+    }
+    public void hacerInvisible(){
+        this.esVisible = false;
     }
 }
