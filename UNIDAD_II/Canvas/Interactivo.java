@@ -23,9 +23,10 @@ import javafx.util.Duration;
 public class Interactivo extends Application{
     Stage ventana;
     public static double ANCHO = 1050, ALTO = 800;
+    double puntaje = 0;
 
-    Emoji e1 = new Emoji("e1.png", 525 - 50, 400 - 50, 100, 100, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, KeyCode.DOWN);
-    Emoji e2 = new Emoji("e2.png", 525 - 50, 400 - 50, 100, 100, KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.S);
+    Emoji e1 = new Emoji("e1.png", 50, 50, 100, 100, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, KeyCode.DOWN);
+    Emoji e2 = new Emoji("e2.png", 525 - 50,  400 - 50, 100, 100, KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.S);
 
     Image fondo = new Image(getClass().getResourceAsStream("pizarra.jpg"));
 
@@ -83,10 +84,25 @@ public class Interactivo extends Application{
         e2.moverSolo();
 
         gc.drawImage(fondo, 0, 0, ANCHO, ALTO);
-        gc.drawImage(e1.getImagen(), e1.getX(), e1.getY(), e1.getAncho(), e1.getAlto());
-        gc.drawImage(e2.getImagen(), e2.getX(), e2.getY(), e2.getAncho(), e2.getAlto());
+        e1.dibujar(gc);
+        e2.dibujar(gc);
+        //gc.drawImage(e1.getImagen(), e1.getX(), e1.getY(), e1.getAncho(), e1.getAlto());
+        //gc.drawImage(e2.getImagen(), e2.getX(), e2.getY(), e2.getAncho(), e2.getAlto());
+        
+        if(e1.colisionaCon(e2)){
+            //System.out.println("\n\nColisiona");
+            gc.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, FontPosture.ITALIC, 48.0));
+            gc.setFill(Color.RED);
+            gc.fillText("COLISION", 10, 50);
 
-
+            puntaje += 1;
+            //System.out.println("e1 > " + e1.getPuntoIzquierda() + ", " + e1.getPuntoDerecha() + ", " + e1.getPuntoArriba() + ", " + e1.getPuntoAbajo());
+            //System.out.println("e2 > " + e2.getPuntoIzquierda() + ", " + e2.getPuntoDerecha() + ", " + e2.getPuntoArriba() + ", " + e2.getPuntoAbajo());
+        }
+        
+        gc.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 32.0));
+        gc.setFill(Color.YELLOW);
+        gc.fillText("PUNTAJE: " + (int) puntaje, 750, 50);
     }
 
 }

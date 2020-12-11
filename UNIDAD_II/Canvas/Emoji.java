@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -12,6 +13,7 @@ public class Emoji {
     private String ruta;
     private Image imagen;
     private double x, y, ancho, alto;
+    private double puntoIzquierdo, puntoDerecho, puntoArriba, puntoAbajo;
     private KeyCode u, d, l, r;
 
     public Emoji(String ruta, double x, double y, double ancho, double alto, KeyCode izq, KeyCode der, KeyCode arr, KeyCode aba){
@@ -26,6 +28,11 @@ public class Emoji {
         this.r = der;
         this.u = arr;
         this.d = aba;
+
+        this.setPuntoIzquierdo();
+        this.setPuntoDerecho();
+        this.setPuntoArriba();
+        this.setPuntoAbajo();
     }
 
     public String getRuta(){
@@ -47,6 +54,21 @@ public class Emoji {
         return this.alto;
     }
 
+    public double getPuntoIzquierda(){
+        return this.puntoIzquierdo;
+    }
+    public double getPuntoDerecha(){
+        return this.puntoDerecho;
+    }
+    public double getPuntoArriba(){
+        return this.puntoArriba;
+    }
+    public double getPuntoAbajo(){
+        return this.puntoAbajo;
+    }
+
+
+
     public void setRuta(String ruta){
         this.ruta = ruta;
     }
@@ -56,9 +78,13 @@ public class Emoji {
     }
     public void setX(double x){
         this.x = x;
+        this.setPuntoIzquierdo();
+        this.setPuntoDerecho();
     }
     public void setY(double y){
         this.y = y;
+        this.setPuntoAbajo();
+        this.setPuntoArriba();
     }
     public void setXY(double x, double y){
         this.setX(x);
@@ -67,39 +93,72 @@ public class Emoji {
 
     public void setAncho(double ancho){
         this.ancho = ancho;
+        this.setPuntoIzquierdo();
+        this.setPuntoDerecho();
     }
     public void setAlto(double alto){
         this.alto = alto;
+        this.setPuntoAbajo();
+        this.setPuntoArriba();
     }
 
     public void setXCentrado(double x){
         this.x = x - this.ancho / 2;
+        this.setPuntoIzquierdo();
+        this.setPuntoDerecho();
     }
     public void setYCentrado(double y){
         this.y = y - this.alto / 2;
+        this.setPuntoAbajo();
+        this.setPuntoArriba();
     }
     public void setXYCentrado(double x, double y){
         this.setXCentrado(x);
         this.setYCentrado(y);
     }
 
+    public void setPuntoIzquierdo(){
+        this.puntoIzquierdo = this.x;
+    }
+    public void setPuntoDerecho(){
+        this.puntoDerecho = this.x + this.ancho;
+    }
+    public void setPuntoArriba(){
+        this.puntoArriba = this.y;
+    }
+    public void setPuntoAbajo(){
+        this.puntoAbajo = this.y + this.alto;
+    }
+
     public void disminuirX(double x){
-        if(this.x - x >= 0)
+        if(this.x - x >= 0){
             this.x -= x;
+            this.setPuntoIzquierdo();
+            this.setPuntoDerecho();
+        }
     }
 
     public void aumentarX(double x){
-        if(this.x + x + this.ancho <= Interactivo.ANCHO)
-            this.x += x;
+        if(this.x + x + this.ancho <= Interactivo.ANCHO){
+            this.x += x;        
+            this.setPuntoIzquierdo();
+            this.setPuntoDerecho();
+        }
     }
 
     public void disminuirY(double y){
-        if(this.y - y >= 0)
+        if(this.y - y >= 0){
             this.y -= y;
+            this.setPuntoAbajo();
+            this.setPuntoArriba();
+        }
     }
     public void aumentarY(double y){
-        if(this.y + y + this.alto <= Interactivo.ALTO)
+        if(this.y + y + this.alto <= Interactivo.ALTO){
             this.y += y;
+            this.setPuntoAbajo();
+            this.setPuntoArriba();
+        }
     }
 
     /*public void mover(Scene escena, KeyCode izq, KeyCode der, KeyCode arr, KeyCode aba){
@@ -143,5 +202,13 @@ public class Emoji {
                 this.aumentarY(5);
                 break;
         }
+    }
+
+    public void dibujar(GraphicsContext gc){
+        gc.drawImage(this.getImagen(), this.getX(), this.getY(), this.getAncho(), this.getAlto());
+    }
+
+    public boolean colisionaCon(Emoji emoji){
+        return (this.puntoDerecho > emoji.getPuntoIzquierda() && this.puntoIzquierdo < emoji.getPuntoDerecha() && this.puntoArriba < emoji.getPuntoAbajo() && this.puntoAbajo > emoji.getPuntoArriba());
     }
 }
