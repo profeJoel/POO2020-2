@@ -16,10 +16,10 @@ public class Personaje {
     private Image quieto;
     private KeyCode l, r, u, d, jump, shot;
 
-    public Personaje(int x, int y, String fuente, KeyCode l, KeyCode r, KeyCode u, KeyCode d, KeyCode jump, KeyCode shot){
+    public Personaje(int x, int y, String fuente, KeyCode l, KeyCode r, KeyCode u, KeyCode d, KeyCode jump, KeyCode shot, int limite){
         this.x = x;
         this.y = y;
-        this.velocidad = 5;
+        this.velocidad = 2;
         this.impulso = 10;
         this.contadorPasos = 0;
         this.haSaltado = false;
@@ -28,6 +28,7 @@ public class Personaje {
         this.vaAbajo = false;
         this.vaArriba = false;
         this.salud = 10;
+        this.setCamino(limite);
 
         int cantidadImagenes = 9;
         this.caminaIzquierda = new Image [cantidadImagenes];
@@ -48,6 +49,14 @@ public class Personaje {
         this.jump = jump;
         this.shot = shot;
         System.out.println("Listo: " + fuente);
+    }
+
+    public int getSalud(){
+        return this.salud;
+    }
+
+    public void disminuirSalud(){
+        this.salud--;
     }
 
     private void setCamino(int limite){
@@ -112,8 +121,8 @@ public class Personaje {
             this.y += this.velocidad;
         else if(e.getCode() == this.jump){
             this.haSaltado = true;
-            this.vaIzquierda = false;
-            this.vaDerecha = false;
+            //this.vaIzquierda = false;
+            //this.vaDerecha = false;
             this.contadorPasos = 0;
         }
         else{
@@ -121,6 +130,17 @@ public class Personaje {
             this.vaDerecha = false;
             this.contadorPasos = 0;
         }
+    }
+
+    public void soltarMovimiento(KeyEvent e){
+        if(e.getCode() == this.l)
+            this.vaIzquierda = false;
+        else if(e.getCode() == this.r)
+            this.vaDerecha = false;
+        else if(e.getCode() == this.u)
+            this.vaArriba = false;
+        else if(e.getCode() == this.d)
+            this.vaAbajo = false;
     }
 
     public void mover(){
@@ -143,9 +163,9 @@ public class Personaje {
         if(this.haSaltado){
             if(this.impulso >= -10){
                 if(this.impulso < 0)
-                    this.y = (int) ((int) (this.impulso * this.impulso) * 0.5 * -1);
+                    this.y -= (int) ((int) (this.impulso * this.impulso) * 0.5 * -1);
                 else
-                    this.y = (int) ((int) (this.impulso * this.impulso) * 0.5);
+                    this.y -= (int) ((int) (this.impulso * this.impulso) * 0.5);
                 this.impulso -= 1;
             }
             else{
@@ -162,6 +182,31 @@ public class Personaje {
                 this.haSaltado = true;
                 this.vaIzquierda = false;
                 this.vaDerecha = false;
+                this.contadorPasos = 0;
+            }
+        }
+    }
+
+    public void seMueveSolo(int nivel){
+        if(this.velocidad > 0){
+            if(this.x + this.velocidad < this.camino[1]){
+                this.x += this.velocidad * nivel;
+                this.vaDerecha = true;
+                this.vaIzquierda = false;
+            }
+            else{
+                this.velocidad *= -1;
+                this.contadorPasos = 0;
+            }
+        }
+        else{
+            if(this.x - this.velocidad > this.camino[0]){
+                this.x += this.velocidad * nivel;
+                this.vaIzquierda = true;
+                this.vaDerecha = false;
+            }
+            else{
+                this.velocidad *= -1;
                 this.contadorPasos = 0;
             }
         }
@@ -196,14 +241,11 @@ public class Personaje {
     public void esGolpeado(){
         this.haSaltado = false;
         this.impulso = 10;
-        this.x = 100;
-        this.y = 410;
+        this.x = (int) Juego.ANCHO / 2;
+        this.y = (int) Juego.ALTO - 100;
         this.contadorPasos = 0;
         this.salud -= 5;
         //ver como pausar el reloj
     }
-
-
-
 
 }
